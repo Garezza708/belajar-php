@@ -11,4 +11,5 @@
     $selisih = $umurkucing - $umur;
 
     echo "selisih usia kucing saya dengan saya = <strong> $selisih </strong> tahun"
+
 ?>
