@@ -1,65 +1,69 @@
 <?php
-$nama = "awikwok";
-$data = array('AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF');
-// for
-// $no = 25;
-// for ($i=0; $i<$no; $i++) {
-//     $n = $i + 1;
-//     echo $n." ".$nama."<br/>";
-// }
+// config connect to server
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "fakultas";
 
-// while
-$no = 100;
-$i = 0;
-while ($i < $no) {
-     $n = $i + 1;
-    echo $n." ".$nama."<br/>";
-    $i++;
+// Create new object connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    exit("Connection failed: " . $conn->connect_error);
 }
 
-// do
-// $no = 25;
-// $i = 0;
-// do {
-//     $n = $i + 1;
-//     echo $n." ".$nama."<br/>";
-//     $i++;
-// } while ($i < $no)
-
-//perulangan data array
-// $i = 0;
-// while ($i < count($data)) {
-//     echo $data[$i]."<br>";
-//     $i++;
-// }
-
-//data array menggunakan forereach
-// foreach($data as $value) {
-//     echo $value."<br>";
-// }
-
-//percabangan
-//pake if
-// if ($nama == "awikwok") {
-//     echo $nama." ....";
-// } else if($nama == "AAAAA") {
-//     echo $nama." ._.";
+// $sql = "insert into mahasiswa (id_Jurusan, NIM, Nama, Jenis_kelamin, tempat_lahir, tanggal_lahir, alamat) values ('2', '111111111111', 'AAAAAAAAAAAAAAAAAA', 'Perempuan', 'AAAAAA', '10001-04-23', 'AAAAAAAAAAAAAAAAAAAAA')";
+// if ($conn->query($sql) === TRUE) {
+//     echo "new record has been successfully created";
 // } else {
-//     echo $nama." ?_?";
+//     echo "error : " . $sql . "<br>" . $conn->error; 
 // }
 
-//switch case
-// switch($nama) {
-//     case "awikwoK":
-//         $pesan = $nama." ...";
-//     break;
-//     case "AWIKWOK":
-//         $pesan = $nama." ._.";
-//     break;
-//     case "awikwok":
-//         $pesan = $nama." :3";
-//     default:
-//         $pesan = $nama." ?_?";
+// $sql = "update jurusan set Nama = 'test update' where id = 2;";
+// if ($conn->query($sql) === TRUE) {
+//     echo "new update has been successfully created";
+// } else {
+//     echo "error : " . $sql . "<br>" . $conn->error; 
 // }
-// echo $pesan;
+
+// $sql = "delete from jurusan where id = 3";
+// if ($conn->query($sql) === TRUE) {
+//     echo "new data change has been successfully created";
+// } else {
+//     echo "error : " . $sql . "<br>" . $conn->error; 
+// }
+
+// $sql = "select id,kode,nama from jurusan";
+// $result = $conn->query($sql);
+
+// if ($result->num_rows>0) {
+//     while ($row = $result->fetch_assoc()) {
+//         echo "id : " . $row['id']. " - kode jurusan : " . $row['kode'] . " - nama jurusan : " . $row['nama'] . "<br>";
+//     }
+// } else {
+//     echo "error : 0 result"; 
+// }
+
+$sql = "select id,kode,nama from jurusan where nama = 'test update' ";
+$result = $conn->query($sql);
+
+if ($result->num_rows>0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "id : " . $row['id']. " - kode jurusan : " . $row['kode'] . " - nama jurusan : " . $row['nama'] . "<br>";
+    }
+} else {
+    echo "error : 0 result"; 
+}
+
+// $sql = "select id,kode,nama from jurusan order by kode ";
+// $result = $conn->query($sql);
+
+// if ($result->num_rows>0) {
+//     while ($row = $result->fetch_assoc()) {
+//         echo "id : " . $row['id']. " - kode jurusan : " . $row['kode'] . " - nama jurusan : " . $row['nama'] . "<br>";
+//     }
+// } else {
+//     echo "error : 0 result"; 
+// }
 ?>
